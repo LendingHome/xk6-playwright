@@ -1,6 +1,7 @@
 package playwright
 
 import (
+	"errors"
 	"fmt"
 	"io/fs"
 	"io/ioutil"
@@ -43,14 +44,15 @@ func (p *pageWrapper) WaitForURL(url string, opts playwright.FrameWaitForURLOpti
 	}
 }
 
-func (p *pageWrapper) WaitForEvent(event string, predicate interface{}) {
-	p.Page.WaitForEvent(event, predicate)
+func (p *pageWrapper) WaitForEvent(event string, options playwright.PageWaitForEventOptions) {
+	p.Page.WaitForEvent(event, options)
 }
 
 func (p *pageWrapper) Locator(selector string, opts playwright.PageLocatorOptions) *locatorWrapper {
-	locator, err := p.Page.Locator(selector, opts)
-	if err != nil {
-		Throw(p.vu.Runtime(), "Error locating selector", err)
+	locator := p.Page.Locator(selector, opts)
+	if locator == nil {
+		msg := "Error locating selector"
+		Throw(p.vu.Runtime(), msg, errors.New(msg))
 	}
 	return newLocatorWrapper(locator, p.vu)
 }

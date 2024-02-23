@@ -1,6 +1,8 @@
 package playwright
 
 import (
+	"errors"
+
 	"github.com/playwright-community/playwright-go"
 	"go.k6.io/k6/js/modules"
 )
@@ -47,11 +49,11 @@ func (loc *locatorWrapper) Fill(value string, options ...playwright.FrameFillOpt
 }
 
 func (loc *locatorWrapper) First() *locatorWrapper {
-	firstLocator, err := loc.Locator.First()
-	if err != nil {
-		Throw(loc.vu.Runtime(), "Error getting first element", err)
+	firstLocator := loc.Locator.First()
+	if firstLocator == nil {
+		msg := "Error getting first element"
+		Throw(loc.vu.Runtime(), msg, errors.New(msg))
 	}
-
 	return newLocatorWrapper(firstLocator, loc.vu)
 }
 
@@ -88,9 +90,10 @@ func (loc *locatorWrapper) IsEnabled(options ...playwright.FrameIsEnabledOptions
 }
 
 func (loc *locatorWrapper) Last() *locatorWrapper {
-	lastLocator, err := loc.Locator.Last()
-	if err != nil {
-		Throw(loc.vu.Runtime(), "Error getting last element", err)
+	lastLocator := loc.Locator.Last()
+	if lastLocator == nil {
+		msg := "Error getting last element"
+		Throw(loc.vu.Runtime(), msg, errors.New(msg))
 	}
 	return newLocatorWrapper(lastLocator, loc.vu)
 }
@@ -103,9 +106,10 @@ func (loc *locatorWrapper) Type(text string, options ...playwright.PageTypeOptio
 }
 
 func (loc *locatorWrapper) Nth(index int) *locatorWrapper {
-	nthLocator, err := loc.Locator.Nth(index)
-	if err != nil {
-		Throw(loc.vu.Runtime(), "Error getting the nth element", err)
+	nthLocator := loc.Locator.Nth(index)
+	if nthLocator == nil {
+		msg := "Error getting the nth element"
+		Throw(loc.vu.Runtime(), msg, errors.New(msg))
 	}
 	return newLocatorWrapper(nthLocator, loc.vu)
 }
