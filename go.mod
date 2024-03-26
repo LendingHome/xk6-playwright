@@ -8,6 +8,7 @@ require (
 )
 
 require (
+	github.com/Masterminds/semver/v3 v3.1.1 // indirect
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect
 	github.com/go-jose/go-jose/v3 v3.0.1 // indirect
 	github.com/go-stack/stack v1.8.1 // indirect
@@ -17,6 +18,7 @@ require (
 	github.com/onsi/gomega v1.31.1 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
+	go.k6.io/xk6 v0.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 )
 
