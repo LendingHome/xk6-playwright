@@ -36,7 +36,7 @@ func (b *browserWrapper) NewPage() *pageWrapper {
 }
 
 // Cookies wrapper around playwright cookies fetch function
-func (b *browserWrapper) Cookies() []*playwright.BrowserContextCookiesResult {
+func (b *browserWrapper) Cookies() []*playwright.Cookie {
 	if b.Browser == nil {
 		log.Panicf("It looks like there's no browser attached. please call `launch()` before accessing the cookies.")
 	}
