@@ -17,6 +17,3 @@ service:
     monorepo: false
     server-side_javascript: false
     type: library 
-  tags:
-  - key: type
-    value: utility
