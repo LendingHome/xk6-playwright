@@ -5,7 +5,15 @@ service:
   description: A fork of the go project that we use to emulate user load and activity for stress testing
   tier: tier_3
   language: go
+  framework: None
   lifecycle: maintenance
-  tags:
-  - key: type
-    value: utility
+  properties:
+    api_type: None
+    calls_vendor: false
+    exempt_from_dependabot_checks: false
+    exempt_from_sonarqube_checks: false
+    fork: true
+    generated_code: false
+    monorepo: false
+    server-side_javascript: false
+    type: library 
