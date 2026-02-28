@@ -33,7 +33,7 @@ RUN export CHROME_FOLDER=$(ls /root/.cache/ms-playwright | grep '^chromium-') \
     && rm -rf /root/.cache/ms-playwright/$CHROME_FOLDER/chrome-linux \
     && ln -s /usr/lib/chromium/ /root/.cache/ms-playwright/$CHROME_FOLDER/chrome-linux
 
-RUN go install go.k6.io/xk6/cmd/xk6
+RUN go install go.k6.io/xk6/cmd/xk6@latest
 RUN xk6 build v0.41.0 --with github.com/LendingHome/xk6-playwright=$(pwd)
 
 USER k6
