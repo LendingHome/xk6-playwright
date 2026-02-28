@@ -29,7 +29,7 @@ RUN npm install @playwright/test
 RUN npx playwright install chromium
 
 # Link chromium
-RUN export CHROME_FOLDER=$(ls /root/.cache/ms-playwright | grep chromium) \
+RUN export CHROME_FOLDER=$(ls /root/.cache/ms-playwright | grep '^chromium-') \
     && rm -rf /root/.cache/ms-playwright/$CHROME_FOLDER/chrome-linux \
     && ln -s /usr/lib/chromium/ /root/.cache/ms-playwright/$CHROME_FOLDER/chrome-linux
 
